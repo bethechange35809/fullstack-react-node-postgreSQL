@@ -8,10 +8,6 @@ RUN npm ci
 
 COPY . .
 
-# Argument to pass API URL at build time if needed
-ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
-
 RUN npm run build
 
 # Production Nginx Stage

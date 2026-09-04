@@ -17,17 +17,17 @@ import {
 } from 'lucide-react';
 
 const getApiBaseUrl = () => {
+  if (typeof window !== 'undefined' && window.location.hostname && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    return `http://${window.location.hostname}:5050`;
+  }
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL;
-  }
-  if (typeof window !== 'undefined') {
-    const host = window.location.hostname;
-    return `http://${host}:5050`;
   }
   return 'http://localhost:5050';
 };
 
 const API_BASE_URL = getApiBaseUrl();
+
 
 
 export default function App() {
