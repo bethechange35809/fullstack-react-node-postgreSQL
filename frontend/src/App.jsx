@@ -16,7 +16,19 @@ import {
   Sparkles
 } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050';
+const getApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    return `http://${host}:5050`;
+  }
+  return 'http://localhost:5050';
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
 
 export default function App() {
   const [users, setUsers] = useState([]);
