@@ -1,0 +1,11 @@
+{
+  "name": "fullstack-react-node-postgresql",
+  "version": "1.0.0",
+  "description": "Fullstack React + Node.js + PostgreSQL CRUD Application",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev.js",
+    "start": "node dev.js",
+    "db:init": "npm run db:init --prefix backend"
+  }
+}

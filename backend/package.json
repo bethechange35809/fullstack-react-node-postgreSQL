@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "db:init": "node initDb.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.17.1",
     "nodemon": "^2.0.13",
     "pg": "^8.7.1"
