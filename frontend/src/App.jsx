@@ -17,16 +17,19 @@ import {
 } from 'lucide-react';
 
 const getApiBaseUrl = () => {
-  if (typeof window !== 'undefined' && window.location.hostname && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    return `http://${window.location.hostname}:5050`;
-  }
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+  if (typeof window !== 'undefined') {
+    // If running in development on localhost, point to local backend port
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:5050';
+    }
+    // In production (ALB / EC2 / Cloud), use relative path routed via Nginx reverse proxy
+    return '';
   }
   return 'http://localhost:5050';
 };
 
 const API_BASE_URL = getApiBaseUrl();
+
 
 
 
@@ -283,7 +286,7 @@ export default function App() {
             <span className="stat-value" style={{ color: apiOnline ? 'var(--success)' : 'var(--danger)' }}>
               {apiOnline ? 'Online' : 'Disconnected'}
             </span>
-            <span className="stat-label">API Status ({API_BASE_URL})</span>
+            <span className="stat-label">API Status ({API_BASE_URL || 'ALB Reverse Proxy'})</span>
           </div>
         </div>
 
